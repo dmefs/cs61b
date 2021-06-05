@@ -44,4 +44,34 @@ public class Planet {
             dy = -dy;
         return calcForceExertedBy(b) * dy / calcDistance(b);
     }
+
+    public double calcNetForceExertedByX(Planet[] bs) {
+        double sum_x = 0;
+
+        for (Planet b : bs) {
+            if (b.equals(this))
+                continue;
+            sum_x += calcForceExertedByX(b);
+        }
+        return sum_x;
+    }
+
+
+    public double calcNetForceExertedByY(Planet[] bs) {
+        double sum_y = 0;
+
+        for (Planet b : bs) {
+            if (b.equals(this))
+                continue;
+            sum_y += calcForceExertedByY(b);
+        }
+        return sum_y;
+    }
+
+    public void update(double dt, double fX, double fY) {
+        xxVel += fX / mass * dt;
+        yyVel += fY / mass * dt;
+        xxPos += dt * xxVel;
+        yyPos += dt * yyVel;
+    }
 }
