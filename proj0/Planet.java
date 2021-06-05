@@ -30,4 +30,18 @@ public class Planet {
     public double calcForceExertedBy(Planet b) {
         return gravity * mass * b.mass / Math.pow(calcDistance(b),2);
     }
+
+    public double calcForceExertedByX(Planet b) {
+        double dx = xxPos - b.xxPos;
+        if (dx < 0)
+            dx = -dx;
+        return calcForceExertedBy(b) * dx / calcDistance(b);
+    }
+
+    public double calcForceExertedByY(Planet b) {
+        double dy = yyPos - b.yyPos;
+        if (dy < 0)
+            dy = -dy;
+        return calcForceExertedBy(b) * dy / calcDistance(b);
+    }
 }
