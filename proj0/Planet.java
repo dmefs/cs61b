@@ -32,16 +32,12 @@ public class Planet {
     }
 
     public double calcForceExertedByX(Planet b) {
-        double dx = xxPos - b.xxPos;
-        if (dx < 0)
-            dx = -dx;
+        double dx = b.xxPos - xxPos;
         return calcForceExertedBy(b) * dx / calcDistance(b);
     }
 
     public double calcForceExertedByY(Planet b) {
-        double dy = yyPos - b.yyPos;
-        if (dy < 0)
-            dy = -dy;
+        double dy = b.yyPos - yyPos;
         return calcForceExertedBy(b) * dy / calcDistance(b);
     }
 
