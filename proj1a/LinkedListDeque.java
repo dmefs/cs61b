@@ -1,13 +1,13 @@
-public class LinkedListDeque<Dhampir> {
+public class LinkedListDeque<T> {
     private StuffNode sentinel;
     private int size;
 
     private class StuffNode {
         private StuffNode prev;
         private StuffNode next;
-        private Dhampir item;
+        private T item;
 
-        StuffNode(StuffNode next, StuffNode prev, Dhampir item) {
+        StuffNode(StuffNode next, StuffNode prev, T item) {
             this.prev = prev;
             this.next = next;
             this.item = item;
@@ -25,18 +25,18 @@ public class LinkedListDeque<Dhampir> {
         sentinel.next = sentinel.prev = sentinel;
         size = 0;
         for (int i = 0; i < other.size(); i += 1) {
-            addFirst((Dhampir) other.get(i));
+            addFirst((T) other.get(i));
         }
     }
 
-    public void addFirst(Dhampir item) {
+    public void addFirst(T item) {
         StuffNode p = new StuffNode(sentinel.next, sentinel, item);
         sentinel.next.prev = p;
         sentinel.next = p;
         size += 1;
     }
 
-    public void addLast(Dhampir item) {
+    public void addLast(T item) {
         StuffNode p = new StuffNode(sentinel, sentinel.prev, item);
         sentinel.prev.next = p;
         sentinel.prev = p;
@@ -58,29 +58,29 @@ public class LinkedListDeque<Dhampir> {
         System.out.println();
     }
 
-    public Dhampir removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
-        Dhampir data = sentinel.next.item;
+        T data = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         size -= 1;
         return data;
     }
 
-    public Dhampir removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
-        Dhampir data = sentinel.prev.item;
+        T data = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
         return data;
     }
 
-    public Dhampir get(int index) {
+    public T get(int index) {
         if ((index < 0) || (index > size)) {
             return null;
         }
@@ -92,14 +92,14 @@ public class LinkedListDeque<Dhampir> {
         return p.item;
     }
 
-    public Dhampir getRecursive(StuffNode p, int index) {
+    public T getRecursive(StuffNode p, int index) {
         if (index == 0) {
             return p.item;
         }
         return getRecursive(p.next, index - 1);
 
     }
-    public Dhampir getRecursive(int index) {
+    public T getRecursive(int index) {
         if ((index < 0) || (index > size)) {
             return null;
         }
