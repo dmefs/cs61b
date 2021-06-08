@@ -1,22 +1,13 @@
-public class ArrayDeque<T>{
+public class ArrayDeque<T> {
     private T []items;
     private int front, rear;
     private int size, capacity;
-    private final int usage_factor = 4;
+    private final int USAGE_FACTOR = 4;
 
     public ArrayDeque() {
         size = front = rear = 0;
         capacity = 8;
         items = (T[]) new Object[capacity];
-    }
-
-    public ArrayDeque(ArrayDeque other) {
-        front = other.front;
-        rear = other.rear;
-        size = other.size;
-        capacity = other.capacity;
-        items = (T[]) new Object[capacity];
-        System.arraycopy(other.items, 0, items, 0, capacity);
     }
 
     private boolean isFull() {
@@ -27,9 +18,9 @@ public class ArrayDeque<T>{
         if (isFull()) {
             capacity *= 2;
         } else {
-            capacity /= usage_factor;
+            capacity /= USAGE_FACTOR;
         }
-        T[] newArray = (T[])new Object[capacity];
+        T[] newArray = (T[]) new Object[capacity];
         if (front < rear) {
             System.arraycopy(items, front, newArray, 0, size);
         } else {
@@ -68,23 +59,25 @@ public class ArrayDeque<T>{
     }
 
     public T removeFirst() {
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
+        }
         T item = items[front];
         front = (front + 1) % capacity;
         size -= 1;
-        if (size < (capacity / usage_factor)) {
+        if (size < (capacity / USAGE_FACTOR)) {
             resize();
         }
         return item;
     }
 
     public T removeLast() {
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
+        }
         rear = ((rear - 1) + capacity) % capacity;
         size -= 1;
-        if (size < (capacity / usage_factor)) {
+        if (size < (capacity / USAGE_FACTOR)) {
             resize();
         }
         return items[rear];
