@@ -18,8 +18,10 @@ public class ArrayDeque<T> {
         int oldCapacity = capacity;
         if (isFull()) {
             capacity *= 2;
-        } else {
+        } else if (capacity > 16){
             capacity /= USAGE_FACTOR;
+        } else {
+            return;
         }
         T[] newArray = (T[]) new Object[capacity];
         if (front < rear) {
@@ -29,7 +31,7 @@ public class ArrayDeque<T> {
             System.arraycopy(items, 0, newArray, oldCapacity - front, rear);
         }
         front = 0;
-        rear = oldCapacity;
+        rear = size;
         items = newArray;
     }
 
