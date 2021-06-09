@@ -1,5 +1,3 @@
-import java.util.BitSet;
-
 public class ArrayDeque<T> {
     private T []items;
     private int front, rear;
