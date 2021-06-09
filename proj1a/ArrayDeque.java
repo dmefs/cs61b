@@ -25,15 +25,16 @@ public class ArrayDeque<T> {
             System.arraycopy(items, front, newArray, 0, size);
         } else {
             System.arraycopy(items, front, newArray, 0, capacity - front);
-            System.arraycopy(items, 0, newArray, capacity-front, rear);
+            System.arraycopy(items, 0, newArray, capacity - front, rear);
         }
+        items = newArray;
     }
 
     public void addFirst(T item) {
         if (isFull()) {
             resize();
         }
-        front = ((front - 1 ) + capacity) % capacity;
+        front = ((front - 1) + capacity) % capacity;
         items[front] = item;
         size += 1;
     }
