@@ -15,6 +15,7 @@ public class ArrayDeque<T> {
     }
 
     private void resize() {
+        int old_capacity = capacity;
         if (isFull()) {
             capacity *= 2;
         } else {
@@ -24,8 +25,8 @@ public class ArrayDeque<T> {
         if (front < rear) {
             System.arraycopy(items, front, newArray, 0, size);
         } else {
-            System.arraycopy(items, front, newArray, 0, capacity - front);
-            System.arraycopy(items, 0, newArray, capacity - front, rear);
+            System.arraycopy(items, front, newArray, 0, old_capacity - front);
+            System.arraycopy(items, 0, newArray, old_capacity - front, rear);
         }
         items = newArray;
     }
