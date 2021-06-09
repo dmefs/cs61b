@@ -1,3 +1,5 @@
+import java.util.BitSet;
+
 public class ArrayDeque<T> {
     private T []items;
     private int front, rear;
@@ -18,7 +20,7 @@ public class ArrayDeque<T> {
         int oldCapacity = capacity;
         if (isFull()) {
             capacity *= 2;
-        } else if (capacity > 16){
+        } else if (capacity > 16) {
             capacity /= USAGE_FACTOR;
         } else {
             return;
@@ -78,15 +80,17 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        T last;
         if (isEmpty()) {
             return null;
         }
         rear = ((rear - 1) + capacity) % capacity;
         size -= 1;
+        T lastItem = items[rear];
         if ((size != 0) && (size < (capacity / USAGE_FACTOR))) {
             resize();
         }
-        return items[rear];
+        return lastItem;
     }
 
     public T get(int index) {
