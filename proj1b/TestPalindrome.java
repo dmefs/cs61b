@@ -37,7 +37,7 @@ public class TestPalindrome {
 
     @Test
     public void testIsPalindromeOffByOneTrue() {
-        assertFalse(palindrome.isPalindrome("horng", new OffByOne()));
+        assertTrue(palindrome.isPalindrome("horng", new OffByOne()));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TestPalindrome {
 
     @Test
     public void testIsPalindromeCCTrue() {
-        assertFalse(palindrome.isPalindrome("horng", new OffByOne()));
+        assertTrue(palindrome.isPalindrome("horng", new OffByOne()));
     }
 
     @Test

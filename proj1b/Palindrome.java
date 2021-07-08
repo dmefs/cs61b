@@ -25,7 +25,7 @@ public class Palindrome {
         }
         Deque<Character> ll = wordToDeque(word);
         for (int i = 0, j = ll.size() - 1; i < j; i++, j--) {
-            if (false == obo.equalChars(ll.get(i), ll.get(j))) {
+            if (!obo.equalChars(ll.get(i), ll.get(j))) {
                 return false;
             }
         }
@@ -37,7 +37,7 @@ public class Palindrome {
         }
         Deque<Character> ll = wordToDeque(word);
         for (int i = 0, j = ll.size() - 1; i < j; i++, j--) {
-            if (false == cc.equalChars(ll.get(i), ll.get(j))) {
+            if (!cc.equalChars(ll.get(i), ll.get(j))) {
                 return false;
             }
         }
