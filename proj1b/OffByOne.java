@@ -3,4 +3,5 @@ public class OffByOne implements CharacterComparator{
         int result = x - y;
         return (result == 1) || (result == -1);
     }
+
 }

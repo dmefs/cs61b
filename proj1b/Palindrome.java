@@ -18,4 +18,29 @@ public class Palindrome {
         }
         return true;
     }
+
+    public boolean isPalindrome(String word, OffByOne obo) {
+        if (word.length() == 0) {
+            return true;
+        }
+        Deque<Character> ll = wordToDeque(word);
+        for (int i = 0, j = ll.size() - 1; i < j; i++, j--) {
+            if (false == obo.equalChars(ll.get(i), ll.get(j))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        if (word.length() == 0) {
+            return true;
+        }
+        Deque<Character> ll = wordToDeque(word);
+        for (int i = 0, j = ll.size() - 1; i < j; i++, j--) {
+            if (false == cc.equalChars(ll.get(i), ll.get(j))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

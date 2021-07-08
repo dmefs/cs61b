@@ -29,8 +29,29 @@ public class TestPalindrome {
     public void testIsPalindromeTrue() {
         assertTrue(palindrome.isPalindrome("noon"));
     }
+
     @Test
     public void testIsPalindromeFalse() {
         assertFalse(palindrome.isPalindrome("horse"));
+    }
+
+    @Test
+    public void testIsPalindromeOffByOneTrue() {
+        assertFalse(palindrome.isPalindrome("horng", new OffByOne()));
+    }
+
+    @Test
+    public void testIsPalindromeOffByOneFalse() {
+        assertFalse(palindrome.isPalindrome("horse", new OffByOne()));
+    }
+
+    @Test
+    public void testIsPalindromeCCTrue() {
+        assertFalse(palindrome.isPalindrome("horng", new OffByOne()));
+    }
+
+    @Test
+    public void testIsPalindromeCCFalse() {
+        assertFalse(palindrome.isPalindrome("horse", new OffByOne()));
     }
 }
