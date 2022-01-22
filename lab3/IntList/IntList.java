@@ -142,16 +142,16 @@ public class IntList {
      * input, returns null.
      */
     public static IntList reverse(IntList A) {
-        IntList result, p;
-        if (A != null) {
-            result = new IntList(A.first, null);
-        } else {
+        IntList prev, curr, next;
+        if (A == null) {
             return null;
         }
-        for (p = A.rest; p != null; p = p.rest) {
-            result = new IntList(p.first, result);
+
+        for (prev = null, curr = A, next = curr.rest; next != null; prev = curr, curr = next, next = next.rest) {
+            curr.rest = prev;
         }
-        return result;
+        curr.rest = prev;
+        return curr;
     }
 
     /**
