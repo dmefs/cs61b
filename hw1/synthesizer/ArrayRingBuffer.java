@@ -11,6 +11,29 @@ public class ArrayRingBuffer<T>  extends AbstractBoundedQueue<T> {
     /* Array for storing the buffer data. */
     private T[] rb;
 
+    @Override
+    public Iterator<T> iterator() {
+        return new RingBufferIterator();
+    }
+
+    private class RingBufferIterator implements Iterator<T> {
+        private int pos;
+        public RingBufferIterator() {
+            pos = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pos != last;
+        }
+
+        @Override
+        public T next() {
+            T item =  rb[pos];
+            pos = (pos + 1) % capacity;
+            return item;
+        }
+    }
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */
@@ -55,6 +78,7 @@ public class ArrayRingBuffer<T>  extends AbstractBoundedQueue<T> {
         }
         T item = rb[first];
         first = (first + 1) % capacity;
+        fillCount -= 1;
         return item;
     }
 
