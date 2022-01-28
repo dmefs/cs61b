@@ -8,9 +8,15 @@ public interface BoundedQueue<T> extends Iterable<T> {
     void enqueue(T x);  // add item x to the end
     T dequeue();        // delete and return item from the front
     T peek();           // return (but do not delete) item from the front
+
     @Override
     Iterator<T> iterator();
 
-    default boolean isEmpty() {return fillCount() == 0;}
-    default boolean isFull() {return fillCount() == capacity();}
+    default boolean isEmpty() {
+        return fillCount() == 0;
+    }
+
+    default boolean isFull() {
+        return fillCount() == capacity();
+    }
 }
